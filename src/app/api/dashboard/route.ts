@@ -144,20 +144,15 @@ export async function GET(req: NextRequest) {
     .map(([label, value]) => ({ label, value }))
     .sort((a, b) => b.value - a.value)
 
-  const dashboard: DashboardData = {
-    reportDate: reportDate || "",
-    ranking,
-    globalPareto,
-    esmParetoMap,
-    esmAllParetoMap,
-    roturaByRef,
-    locByLoc,
-    allRefs:  [...allRefsSet].sort(),
-    allDefs:  [...allDefsSet].sort(),
-    allEsm:   [...allEsmSet].sort(),
-    roturaMatrix,
-    locMatrix,
-  }
+ const dashboard: any = {
+      reportDate: reportDate || "",
+      ranking,
+      globalPareto,
+      esmParetoMap,
+      allEsm: [...allEsmSet].sort(),
+      roturaMatrix,
+      locMatrix,
+    };
 
   return NextResponse.json(dashboard)
 }
