@@ -145,7 +145,7 @@ export async function GET(req: NextRequest) {
     .sort((a, b) => b.value - a.value)
 
   const dashboard: DashboardData = {
-    reportDate,
+    reportDate: reportDate || "",
     ranking,
     globalPareto,
     esmParetoMap,
