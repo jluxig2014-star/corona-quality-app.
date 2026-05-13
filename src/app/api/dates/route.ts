@@ -6,7 +6,7 @@ export async function GET() {
 
   const { data, error } = await db
     .from('quality_records')
-    .select('report_date')
+    .select('*')
     .order('report_date', { ascending: false })
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
