@@ -6,12 +6,11 @@ export async function GET() {
 
   const { data, error } = await db
     .from('quality_records')
-    .select('*')
+    .select('*') // Asegúrate de que tenga el asterisco para traer todo
     .order('report_date', { ascending: false })
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
-  // deduplicate
-  const dates = [...new Set((data || []).map((r: any) => r.report_date))]
-  return NextResponse.json({ dates })
+  // Enviamos los datos crudos para ver si el dashboard reacciona
+  return NextResponse.json(data) 
 }
