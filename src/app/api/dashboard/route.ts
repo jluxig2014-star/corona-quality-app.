@@ -74,8 +74,8 @@ export async function GET(req: NextRequest) {
     const b   = Number(r.buena)       || 0
     const d   = Number(r.desperdicio) || 0
     const rb  = Number(r.retrabajo)   || 0
-    const def = (r.def           || '').trim()
-    const loc = (r.loc           || 'Sin LOC').trim()
+    const def = (r.def && r.def !== 'EMPTY' ? r.def : '').trim()
+    const loc = (r.loc && r.loc !== 'EMPTY' ? r.loc : 'Sin LOC').trim()
     const esm = (r.dueno_proceso || 'Sin nombre').trim()
     const ref = (r.attribute_2   || 'N/A').trim()
 
