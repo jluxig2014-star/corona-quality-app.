@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
     const { data, error } = await db
       .from('quality_records')
       .select('attribute_2,buena,desperdicio,retrabajo,loc,def,dueno_proceso')
-      // .eq('report_date', reportDate) 
+      .eq('report_date', reportDate) 
       .range(from, from + PAGE - 1)
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
