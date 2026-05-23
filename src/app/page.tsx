@@ -261,7 +261,7 @@ export default function DashboardPage() {
                   <th style={{textAlign:'right'}}>% RAJA</th>
                 </tr></thead>
                 <tbody>
-                  {data?.ranking.map((esm, i) => {
+                  {(data?.ranking || []).map((esm, i) => {
                     const c = semaColor(esm.gradoAEsm), bg = semaBg(esm.gradoAEsm)
                     const isSel = selectedEsm === esm.nombre
                     return (
@@ -312,7 +312,7 @@ export default function DashboardPage() {
                 <label>Defecto:</label>
                 <select value={selRoturaDef} onChange={e=>setSelRoturaDef(e.target.value)}>
                   <option value="TODOS">TODOS</option>
-                  {data?.allDefs.map(d=><option key={d} value={d}>{d}</option>)}
+                  {(data?.allDefs || []).map(d=><option key={d} value={d}>{d}</option>)} 
                 </select>
               </div>
             </div>
@@ -329,7 +329,7 @@ export default function DashboardPage() {
                 <label>Referencia:</label>
                 <select value={selLocRef} onChange={e=>setSelLocRef(e.target.value)}>
                   <option value="TODOS">TODOS</option>
-                  {data?.allRefs.map(r=><option key={r} value={r}>{r}</option>)}
+                  {(data?.allRefs || []).map(r=><option key={r} value={r}>{r}</option>)}
                 </select>
               </div>
               <div className="filter-group">
