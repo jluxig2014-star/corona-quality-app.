@@ -24,7 +24,21 @@ export default function DashboardPage() {
   useEffect(() => {
     fetch('/api/dates')
       .then(r => r.json())
-      .then(j => { setDates(j.dates || []); if (j.dates?.length) setSelDate(j.dates[0]) })
+      .then(datesArray => { 
+        // Si no hay datos, apagamos el cargador
+        if (!datesArray || datesArray.length === 0) {
+            setLoading(false);
+            return;
+        }
+        // Guardamos las fechas y seleccionamos la primera
+        setDates(datesArray); 
+        setSelDate(datesArray[0]); 
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+        setError('Error cargando las fechas');
+      })
   }, [])
 
   // ── Fetch dashboard data when date changes ────────────────────────────────
