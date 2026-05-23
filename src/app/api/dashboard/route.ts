@@ -4,7 +4,7 @@ import {
   isDirectDefect, isRaja, pct,
   ParetoItem, RankingEntry, ChartItem, DashboardData
 } from '@/lib/logic'
-
+export const dynamic = 'force-dynamic'
 function buildPareto(freq: Record<string, number>): ParetoItem[] {
   const arr = Object.entries(freq)
     .sort((a, b) => b[1] - a[1])
