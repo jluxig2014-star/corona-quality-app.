@@ -322,16 +322,15 @@ export default function DashboardPage() {
 
         {/* 4. POSICIÓN DEL DEFECTO */}
         <section>
-          <div className="sec-header">
-            <div className="sec-title"><span className="sec-num">4</span> Posición del Defecto</div>
-            <div className="filters">
-              <div className="filter-group">
-                <label>Referencia:</label>
-                <select value={selLocRef} onChange={e=>setSelLocRef(e.target.value)}>
-                  <option value="TODOS">TODOS</option>
-                  {(data?.allRefs || []).map(r=><option key={r} value={r}>{r}</option>)}
-                </select>
-              </div>
+
+          <div className="filter-group">
+  <label>Defecto:</label>
+  <select value={selLocDef} onChange={e=>setSelLocDef(e.target.value)}>
+    <option value="TODOS">TODOS</option>
+    {(data?.allDefs || []).map(d=><option key={d} value={d}>{d}</option>)}
+  </select>
+</div>
+          
               <div className="filter-group">
                 <label>Defecto:</label>
                 <select value={selLocDef} onChange={e=>setSelLocDef(e.target.value)}>
