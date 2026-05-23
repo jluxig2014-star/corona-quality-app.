@@ -322,12 +322,11 @@ export default function DashboardPage() {
 
         {/* 4. POSICIÓN DEL DEFECTO */}
         <section>
-
-          <div className="filter-group">
+<div className="filter-group">
   <label>Defecto:</label>
   <select value={selLocDef} onChange={e=>setSelLocDef(e.target.value)}>
     <option value="TODOS">TODOS</option>
-    {(data?.allDefs || []).map(d=><option key={d} value={d}>{d}</option>)}
+    {data?.allDefs.map(d=><option key={d} value={d}>{d}</option>)}  {/* <--- ESTA ES LA LÍNEA CON EL ERROR */}
   </select>
 </div>
           
