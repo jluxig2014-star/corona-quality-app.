@@ -6,16 +6,21 @@ export const dynamic = 'force-dynamic'
 export async function GET() {
   const db = supabaseAdmin()
 
-  // Solo pedimos la columna report_date para ahorrar memoria
+  // Intentamos obtener CUALQUIER cosa de la tabla sin filtros
   const { data, error } = await db
     .from('quality_records')
-    .select('report_date')
-    .order('report_date', { ascending: false })
+    .select('*')
+    .limit(5)
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  if (error) {
+    return NextResponse.json({ error: "Error en DB: " + error.message }, { status: 500 })
+  }
 
-  // Extraemos solo las fechas únicas (ej: ["2026-05-14"])
-  const dates = [...new Set((data || []).map((r: any) => r.report_date))]
-  
-  return NextResponse.json(dates)
+  // Si esto devuelve registros, entonces la conexión está BIEN.
+  // Si esto sigue devolviendo [], el problema es la conexión a la base de datos (URL o KEY).
+  return NextResponse.json({ 
+    message: "Conexión exitosa",
+    cantidad_registros: data ? data.length : 0,
+    primer_registro: data && data.length > 0 ? data[0] : null
+  })
 }
