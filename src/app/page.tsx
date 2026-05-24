@@ -241,7 +241,7 @@ export default function DashboardPage() {
           </span>
         )}
       </div>
-
+      
       <div className="content">
 
         {/* 1. RANKING */}
@@ -326,7 +326,7 @@ export default function DashboardPage() {
   <label>Defecto:</label>
   <select value={selLocDef} onChange={e=>setSelLocDef(e.target.value)}>
     <option value="TODOS">TODOS</option>
-    {data?.allDefs.map(d=><option key={d} value={d}>{d}</option>)}  {/* <--- ESTA ES LA LÍNEA CON EL ERROR */}
+    {(data?.allDefs || []).map(d => <option key={d} value={d}>{d}</option>)}
   </select>
 </div>
           
